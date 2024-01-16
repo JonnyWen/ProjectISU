@@ -8,6 +8,9 @@ def takePic():
 def regProfile():
     print('regProfile')
 
+def takeAttendance():
+    print('takeAttendance')
+
 # Display application window
 window = tkinter.Tk()
 window.title(" Student Attendance System")
@@ -25,7 +28,7 @@ regFrame = tkinter.Frame(window, bg='#ADD8E6')
 regFrame.place(relx=0.05, rely=0.1, relwidth=0.40, relheight=0.80)
 
 # header of Registration frame
-regFrameHeader = tkinter.Label(regFrame, text="Register New Student", fg="#051650", bg="white", font=('Helvetica', 15, ' bold '))
+regFrameHeader = tkinter.Label(regFrame, text="Register New Student", fg="#051650", bg="white", font=('Helvetica', 17, ' bold '))
 regFrameHeader.place(x=0, y=0, relwidth=1)
 
 # Label of student number
@@ -55,6 +58,24 @@ takePicButton.place(x=30, y=350, relwidth=0.50)
 # Register Facial Profile button
 regProfileButton = tkinter.Button(regFrame, text="Register Facial Profile", command=regProfile, fg="black", bg="#051650", width=34, height=1, activebackground = "grey", font=('Helvetica', 16, ' bold '))
 regProfileButton.place(x=30, y=430,relwidth=0.50)
+
+### End of registratipon frame
+
+# Attendance panel
+attFrame = tkinter.Frame(window, bg="#ADD8E6")
+attFrame.place(relx=0.56, rely=0.1, relwidth=0.40, relheight=0.80)
+
+# header of Registration frame
+attFrameHeader = tkinter.Label(attFrame, text="Mark Attendance", fg="#051650", bg="white", font=('Helvetica', 17, ' bold '))
+attFrameHeader.place(x=0, y=0, relwidth=1)
+
+# Taking attendance button
+takeAttendanceButton = tkinter.Button(attFrame, text="Take Attendance", command=takeAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Helvetica', 16, ' bold '))
+takeAttendanceButton.place(x=30,y=60,relwidth=0.89)
+
+# Exit button for exiting application
+exitButton = tkinter.Button(attFrame, text="Exit", command=window.destroy, fg="black", bg="#13059c", width=35, height=1, activebackground = "white", font=('Helvetica', 20, ' bold '))
+exitButton.place(x=30, y=450,relwidth=0.89)
 
 window.mainloop()
 
