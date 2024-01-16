@@ -1,11 +1,17 @@
-Source everything you read/watch up on throughout the project:
-Research Examples:
+# Research Activities
 
-Video: Pygame in 90 Minutes by TechWithTim
-Source: https://www.youtube.com/watch?v=jO6qQDNa2UY&t=1s
-Reason: Wanted to learn the fundamentals of pygame
+#### Article: Face Detection with Python using OpenCV
+#### Source: https://www.datacamp.com/tutorial/face-detection-python-opencv
+#### Reason: Learned fundamentals of using computer vision and openCV libray.
 
-Article: How To Create Your First Web Application Using Flask and Python 3 by DigitalOcean
-Source: https://www.digitalocean.com/community/tutorials/how-to-create-your-first-web-application-using-flask-and-python-3 
-Reason: Wanted to learn how to import Flask into python
+#### Video: Face Recognition With Python 3.10 Tutorial (Webcam)
+#### Source: https://www.youtube.com/watch?v=tl2eEBFEHqM&t=900s
+#### Reason: Learning fundamentals of facial recognition with python.
+
+#### Article: Python GUI Programming With Tkinter
+#### Source: https://realpython.com/python-gui-tkinter/
+#### Reason: Learning fundamentals of using Tkinter framework to create graphic user interface.
+
+
+
 
