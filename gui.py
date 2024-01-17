@@ -1,9 +1,58 @@
 import tkinter
+import cv2
+import face_recognition
 def clear():
     print('clear')
 
 def takePic():
-    print('takePic')
+    Id = (inputStudentNum.get())
+    name = (inputStudentName.get())
+    if ((name.isalpha()) or (' ' in name)):
+
+        cam = cv2.VideoCapture(0)
+        ret, img = cam.read()
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        while True:
+            ret, frame = cam.read()
+            if not ret:
+                print("failed to grab frame")
+                break
+
+            small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+            rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
+            face_locations = face_recognition.face_locations(rgb_small_frame)
+
+            for top, right, bottom, left in face_locations:
+                top *= 4
+                right *= 4
+                bottom *= 4
+                left *= 4
+
+                cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0))
+
+            cv2.imshow("Position your face in the middle of camera and press space...", frame)
+
+            k = cv2.waitKey(1)
+            if k % 256 == 32:
+                # SPACE pressed
+                img_name = "{}.{}.png".format(Id, name)
+                cv2.imwrite('images/' + img_name, frame)
+                print("{} written!".format(img_name))
+                break
+
+            if cv2.waitKey(1) == ord('q'):
+                break
+
+        cam.release()
+        cv2.destroyAllWindows()
+        res = name + ' registered successfully.'
+        message.configure(text=res)
+    else:
+        if not name.isalpha():
+            res = "Enter Correct name"
+            message.configure(text=res)
+
 
 def regProfile():
     print('regProfile')
@@ -55,10 +104,6 @@ clearButton.place(x=45, y=230, relwidth=0.29)
 takePicButton = tkinter.Button(regFrame, text="Take Pictures", command=takePic, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Helvetica', 16, ' bold '))
 takePicButton.place(x=30, y=350, relwidth=0.50)
 
-# Register Facial Profile button
-regProfileButton = tkinter.Button(regFrame, text="Register Facial Profile", command=regProfile, fg="black", bg="#051650", width=34, height=1, activebackground = "grey", font=('Helvetica', 16, ' bold '))
-regProfileButton.place(x=30, y=430,relwidth=0.50)
-
 ### End of registratipon frame
 
 # Attendance panel
@@ -76,6 +121,10 @@ takeAttendanceButton.place(x=30,y=60,relwidth=0.89)
 # Exit button for exiting application
 exitButton = tkinter.Button(attFrame, text="Exit", command=window.destroy, fg="black", bg="#13059c", width=35, height=1, activebackground = "white", font=('Helvetica', 20, ' bold '))
 exitButton.place(x=30, y=450,relwidth=0.89)
+
+# message
+message = tkinter.Label(regFrame, text="" ,bg="#ADD8E6" ,fg="green"  ,width=39,height=1, activebackground = "yellow" ,font=('times', 16, ' bold '))
+message.place(x=7, y=500)
 
 window.mainloop()
 
