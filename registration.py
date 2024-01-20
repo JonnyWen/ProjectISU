@@ -1,5 +1,7 @@
 import cv2
 import face_recognition
+from db import insertStudent, Student
+
 
 def register(Id, name):
 
@@ -35,6 +37,9 @@ def register(Id, name):
                 img_name = "{}.{}.png".format(Id, name)
                 cv2.imwrite('images/' + img_name, frame)
                 print("{} written!".format(img_name))
+                # Add student record to database
+                student = Student(student_num = Id, name = name, imageName = img_name)
+                insertStudent(student)
                 break
 
             if cv2.waitKey(1) == ord('q'):

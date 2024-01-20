@@ -30,3 +30,16 @@ class Attendance(Base):
 # Create tables
 # Base.metadata.tables['student'].create(engine)
 # Base.metadata.tables['attendance'].create(engine)
+
+# Open session to database
+Session = sessionmaker(bind=engine)
+session = Session()
+def insertStudent(student):
+
+    qry_object = session.query(Student).filter(Student.student_num == student.student_num).all()
+
+    if qry_object:
+        print('student already registered')
+        return
+    session.add(student)
+    session.commit()
