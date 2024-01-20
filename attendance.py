@@ -1,6 +1,7 @@
 import face_recognition
 import cv2
 import sys
+import numpy as np
 
 class AttendanceMgr:
     face_locations = []
