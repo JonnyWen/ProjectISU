@@ -2,7 +2,8 @@ import face_recognition
 import cv2
 import sys
 import numpy as np
-from db import getAllStudents
+from db import getAllStudents, Attendance, insertAttendance
+from datetime import datetime
 
 class AttendanceMgr:
     face_locations = []
@@ -47,31 +48,34 @@ class AttendanceMgr:
 
                 #find all faces in the current frame
                 self.face_locations = face_recognition.face_locations(rgb_small_frame)
+                # Encodes all face
                 self.face_encodings = face_recognition.face_encodings(rgb_small_frame, self.face_locations)
 
                 self.face_names = []
                 for face_encoding in self.face_encodings:
                     matches = face_recognition.compare_faces(self.known_face_encodings, face_encoding)
                     name = 'Unknown'
-                    confidence = 'Unknown'
 
+                    # Calculates distance of know faces from current face encoding on camera
                     face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)
 
+                    # Find the best match using smallest distance
                     if len(face_distances) > 0:
                         best_match_index = np.argmin(face_distances)
 
+                    # Saving match to attendance table (present student)
                     if len(face_distances) > 0 and matches[best_match_index]:
                         name = self.known_face_names[best_match_index]
                         id = self.known_face_ids[best_match_index]
-                        # confidence = face_confidence(face_distances[best_match_index])
-                       # if name != 'Unknown':
-                            #self.markAttendance(id, name)
 
-                    self.face_names.append(f'{name} ({confidence})')
+                        if name != 'Unknown':
+                            self.markAttendance(id, name)
+
+                    self.face_names.append(f'{name}')
 
             self.process_current_frame = not self.process_current_frame
 
-            # Display annotations
+            # Display recognized name
             for (top, right, bottom, left), name in zip(self.face_locations, self.face_names):
                 top *= 4
                 right *= 4
@@ -89,3 +93,10 @@ class AttendanceMgr:
 
         video_capture.release()
         cv2.destroyAllWindows()
+
+    def markAttendance(self, id, name):
+        print(f'adding new attendance for {id}, {name}')
+        tString = datetime.now().strftime('%H:%M:%S')
+        dString = datetime.now().strftime('%d/%m/%Y')
+        attendance = Attendance(student_num=id, name=name, date=dString, time=tString)
+        insertAttendance(attendance)

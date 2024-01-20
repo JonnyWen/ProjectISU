@@ -46,3 +46,13 @@ def insertStudent(student):
 
 def getAllStudents():
     return session.query(Student).all()
+
+def insertAttendance(attendance):
+
+    qry_object = session.query(Attendance).filter(Attendance.student_num == attendance.student_num).all()
+
+    if qry_object:
+        print(f'student {attendance.student_num} {attendance.name} already registered')
+        return
+    session.add(attendance)
+    session.commit()
