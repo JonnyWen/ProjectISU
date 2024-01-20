@@ -59,3 +59,7 @@ def insertAttendance(attendance):
 
 def queryAllAttendance():
     return session.query(Attendance).all()
+
+def deleteAllAttendance():
+    session.query(Attendance).delete()
+    session.commit()

@@ -2,7 +2,7 @@ import face_recognition
 import cv2
 import sys
 import numpy as np
-from db import getAllStudents, Attendance, insertAttendance, queryAllAttendance
+from db import getAllStudents, Attendance, insertAttendance, queryAllAttendance, deleteAllAttendance
 from datetime import datetime
 
 class AttendanceMgr:
@@ -103,3 +103,6 @@ class AttendanceMgr:
 
 def getAllAttendance():
     return queryAllAttendance()
+
+def removeAttendance():
+    deleteAllAttendance()

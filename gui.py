@@ -7,7 +7,7 @@ import face_recognition
 import os
 import sys
 import numpy as np
-from attendance import AttendanceMgr, getAllAttendance, getAllStudents
+from attendance import AttendanceMgr, getAllAttendance, getAllStudents, removeAttendance
 from registration import register
 
 def clear():
@@ -44,6 +44,9 @@ def showAbsence():
         if student.student_num not in attendee_ids:
             tb.insert('', 'end', text=student.student_num, values=(student.name, 'absense', 'absense'))
 
+def clearAttendance():
+    print('clear attendance')
+    removeAttendance()
 
 #AskforQUIT
 def on_closing():
@@ -107,7 +110,11 @@ attFrameHeader.place(x=0, y=0, relwidth=1)
 
 # Taking attendance button
 takeAttendanceButton = tkinter.Button(attFrame, text="Take Attendance", command=takeAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
-takeAttendanceButton.place(x=30,y=60,relwidth=0.89)
+takeAttendanceButton.place(x=30,y=60,relwidth=0.40)
+
+# Taking attendance button
+takeAttendanceButton = tkinter.Button(attFrame, text="Clear Attendance", command=clearAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
+takeAttendanceButton.place(x=280,y=60,relwidth=0.40)
 
 # Showing attendance button
 showAttendanceButton = tkinter.Button(attFrame, text="Show Attendance", command=showAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
