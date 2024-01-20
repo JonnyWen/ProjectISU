@@ -10,5 +10,14 @@ git add .
 git commit -m 'Initial commit of README.md/RESEARCH.md'
 git push
 
-
- 
+## To dos:
+### 1.Enhance face recognition functionality to write to database
+### 2.Create attendance table in GUI
+### 3.Show attendance and show absence functionality
+### 4.Clear attendance button and functionality
+### 5.Clear registration button and functionality
+### 6.Testing!
+### 7.Bug fixing!
+### 8.GUI enhancement (colors, size, logos)
+### 9.Update RESEARCH.md sqlchemy and sqlite studio
+### 10.Update README.md formatting and required contents
