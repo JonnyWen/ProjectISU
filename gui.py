@@ -30,8 +30,8 @@ window.resizable(True,True)
 window.configure(background='#051650')
 
 # Title in Application Window
-title = tkinter.Label(window, text="Smart Student Attendance System",
-                         fg="white", bg="#051650", width=60, height=1, font=('Helvetica', 30, ' normal '))
+title = tkinter.Label(window, text="FaceAttendance",
+                         fg="white", bg="#051650", width=60, height=1, font=('Inter', 30, ' normal '))
 title.place(x=10, y=10, relwidth=1)
 
 # Registration frame
