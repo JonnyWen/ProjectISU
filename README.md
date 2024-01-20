@@ -21,3 +21,4 @@ git push
 ### 8.GUI enhancement (colors, size, logos)
 ### 9.Update RESEARCH.md sqlchemy and sqlite studio
 ### 10.Update README.md formatting and required contents
+### 11.Make GUI more colorful and professional
