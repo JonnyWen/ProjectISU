@@ -8,7 +8,7 @@ import os
 import sys
 import numpy as np
 from attendance import AttendanceMgr, getAllAttendance, getAllStudents, removeAttendance
-from registration import register
+from registration import register, removeRegisteredStudent
 
 def clear():
     print('clear')
@@ -47,6 +47,14 @@ def showAbsence():
 def clearAttendance():
     print('clear attendance')
     removeAttendance()
+
+def clearRegistration():
+    print('Clear Registration')
+    # Remove all image files
+    for root, dirs, files in os.walk('images'):
+        for file in files:
+            os.remove(os.path.join(root, file))
+    removeRegisteredStudent()
 
 #AskforQUIT
 def on_closing():
@@ -97,6 +105,10 @@ clearButton.place(x=45, y=230, relwidth=0.29)
 # Take Picture buttons
 takePicButton = tkinter.Button(regFrame, text="Take Pictures", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
 takePicButton.place(x=30, y=350, relwidth=0.50)
+
+# Clear Registration buttons
+clearRegistrationButton = tkinter.Button(regFrame, text="Clear all registration", command=clearRegistration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
+clearRegistrationButton.place(x=30, y=400, relwidth=0.50)
 
 ### End of registratipon frame
 

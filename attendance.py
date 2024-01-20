@@ -106,3 +106,4 @@ def getAllAttendance():
 
 def removeAttendance():
     deleteAllAttendance()
+

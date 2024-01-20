@@ -14,8 +14,8 @@ git push
 ### 1.Enhance face recognition functionality to write to database DONE
 ### 2.Create attendance table in GUI DONE 
 ### 3.Show attendance and show absence functionality DONE
-### 4.Clear attendance button and functionality
-### 5.Clear registration button and functionality
+### 4.Clear attendance button and functionality DONE
+### 5.Clear registration button and functionality DONE
 ### 6.Testing!
 ### 7.Bug fixing!
 ### 8.GUI enhancement (colors, size, logos)
@@ -23,3 +23,4 @@ git push
 ### 10.Update README.md formatting and required contents
 ### 11.Make GUI more colorful and professional
 ### 12.Fix Scrollbar 
+### 13.Fix Clear button for register

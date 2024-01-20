@@ -1,6 +1,6 @@
 import cv2
 import face_recognition
-from db import insertStudent, Student
+from db import insertStudent, Student, deleteAllStudents
 
 
 def register(Id, name):
@@ -55,3 +55,6 @@ def register(Id, name):
             message = "Enter Correct name"
            # message.configure(text=res)
             return message
+
+def removeRegisteredStudent():
+    deleteAllStudents()

@@ -63,3 +63,7 @@ def queryAllAttendance():
 def deleteAllAttendance():
     session.query(Attendance).delete()
     session.commit()
+
+def deleteAllStudents():
+    session.query(Student).delete()
+    session.commit()
