@@ -10,8 +10,10 @@ import numpy as np
 from attendance import AttendanceMgr, getAllAttendance, getAllStudents, removeAttendance
 from registration import register, removeRegisteredStudent
 
+#clearbutton
 def clear():
-    print('clear')
+    inputStudentNum.delete(0, 'end')
+    inputStudentName.delete(0, 'end')
 
 def registration():
 
