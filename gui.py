@@ -21,6 +21,12 @@ def takeAttendance():
     att = AttendanceMgr()
     att.takeAttendance()
 
+def showAttendance():
+    print('show attendance')
+
+def showAbsence():
+    print('Show absence')
+
 
 # Display application window
 window = tkinter.Tk()
@@ -80,9 +86,17 @@ attFrameHeader.place(x=0, y=0, relwidth=1)
 takeAttendanceButton = tkinter.Button(attFrame, text="Take Attendance", command=takeAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
 takeAttendanceButton.place(x=30,y=60,relwidth=0.89)
 
+# Showing attendance button
+showAttendanceButton = tkinter.Button(attFrame, text="Show Attendance", command=showAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
+showAttendanceButton.place(x=30,y=480,relwidth=0.40)
+
+# Show absence button
+showAbsenceButton = tkinter.Button(attFrame, text="Show Absence", command=showAbsence, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
+showAbsenceButton.place(x=280,y=480,relwidth=0.40)
+
 # Exit button for exiting application
 exitButton = tkinter.Button(attFrame, text="Exit", command=window.destroy, fg="black", bg="#13059c", width=35, height=1, activebackground = "white", font=('Inter', 20, ' bold '))
-exitButton.place(x=30, y=450,relwidth=0.89)
+exitButton.place(x=30, y=520,relwidth=0.89)
 
 # message
 message = tkinter.Label(regFrame, text="" ,bg="#ADD8E6" ,fg="green"  ,width=39,height=1, activebackground = "yellow" ,font=('times', 16, ' bold '))
