@@ -5,59 +5,17 @@ import os
 import sys
 import numpy as np
 from attendance import AttendanceMgr
+from registration import register
 
 def clear():
     print('clear')
 
-def takePic():
+def registration():
+
     Id = (inputStudentNum.get())
     name = (inputStudentName.get())
-    if ((name.isalpha()) or (' ' in name)):
-
-        cam = cv2.VideoCapture(0)
-        ret, img = cam.read()
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        while True:
-            ret, frame = cam.read()
-            if not ret:
-                print("failed to grab frame")
-                break
-
-            small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-            rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-            face_locations = face_recognition.face_locations(rgb_small_frame)
-
-            for top, right, bottom, left in face_locations:
-                top *= 4
-                right *= 4
-                bottom *= 4
-                left *= 4
-
-                cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0))
-
-            cv2.imshow("Position your face in the middle of camera and press space...", frame)
-
-            k = cv2.waitKey(1)
-            if k % 256 == 32:
-                # SPACE pressed
-                img_name = "{}.{}.png".format(Id, name)
-                cv2.imwrite('images/' + img_name, frame)
-                print("{} written!".format(img_name))
-                break
-
-            if cv2.waitKey(1) == ord('q'):
-                break
-
-        cam.release()
-        cv2.destroyAllWindows()
-        res = name + ' registered successfully.'
-        message.configure(text=res)
-    else:
-        if not name.isalpha():
-            res = "Enter Correct name"
-            message.configure(text=res)
-
+    msg = register(Id,name)
+    message.configure(text=msg)
 
 def takeAttendance():
     att = AttendanceMgr()
@@ -105,7 +63,7 @@ clearButton = tkinter.Button(regFrame, text="Clear", command=clear, fg="black", 
 clearButton.place(x=45, y=230, relwidth=0.29)
 
 # Take Picture buttons
-takePicButton = tkinter.Button(regFrame, text="Take Pictures", command=takePic, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Helvetica', 16, ' bold '))
+takePicButton = tkinter.Button(regFrame, text="Take Pictures", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Helvetica', 16, ' bold '))
 takePicButton.place(x=30, y=350, relwidth=0.50)
 
 ### End of registratipon frame
