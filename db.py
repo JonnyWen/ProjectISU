@@ -56,3 +56,6 @@ def insertAttendance(attendance):
         return
     session.add(attendance)
     session.commit()
+
+def queryAllAttendance():
+    return session.query(Attendance).all()

@@ -1,10 +1,13 @@
 import tkinter
+from tkinter import *
+from tkinter import messagebox as mess
+from tkinter import ttk
 import cv2
 import face_recognition
 import os
 import sys
 import numpy as np
-from attendance import AttendanceMgr
+from attendance import AttendanceMgr, getAllAttendance, getAllStudents
 from registration import register
 
 def clear():
@@ -23,9 +26,29 @@ def takeAttendance():
 
 def showAttendance():
     print('show attendance')
+    # clear table first
+    for k in tb.get_children():
+        tb.delete(k)
+    # Display each row
+    for att in getAllAttendance():
+        tb.insert('', 'end', text=att.student_num, values=(att.name, att.date, att.time))
 
 def showAbsence():
     print('Show absence')
+    # collect id of all attendees
+    attendee_ids = [att.student_num for att in getAllAttendance()]
+    print(attendee_ids)
+    for k in tb.get_children():
+        tb.delete(k)
+    for student in getAllStudents():
+        if student.student_num not in attendee_ids:
+            tb.insert('', 'end', text=student.student_num, values=(student.name, 'absense', 'absense'))
+
+
+#AskforQUIT
+def on_closing():
+    if mess.askyesno("Quit", "You are exiting window.Do you want to quit?"):
+        window.destroy()
 
 
 # Display application window
@@ -99,8 +122,34 @@ exitButton = tkinter.Button(attFrame, text="Exit", command=window.destroy, fg="b
 exitButton.place(x=30, y=520,relwidth=0.89)
 
 # message
-message = tkinter.Label(regFrame, text="" ,bg="#ADD8E6" ,fg="green"  ,width=39,height=1, activebackground = "yellow" ,font=('times', 16, ' bold '))
+message = tkinter.Label(regFrame, text="" ,bg="#ADD8E6" ,fg="green" ,width=39,height=1, activebackground = "yellow" ,font=('Inter', 16, ' bold '))
 message.place(x=7, y=500)
 
+# Attendance table title
+attendanceTitle = tkinter.Label(attFrame, text="Attendance Table",width=20,fg="#051650",bg="#ADD8E6",height=1,font=('Inter', 17, ' bold '))
+attendanceTitle.place(x=140, y=115)
+
+# attendance table
+style = ttk.Style()
+style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Inter', 11)) # Modify the font of the body
+style.configure("mystyle.Treeview.Heading",font=('Inter', 13,'bold')) # Modify the font of the headings
+style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})]) # Remove the borders
+tb = ttk.Treeview(attFrame, height =13,columns = ('name','date','time'),style="mystyle.Treeview")
+tb.column('#0',width=82)
+tb.column('name',width=130)
+tb.column('date',width=133)
+tb.column('time',width=133)
+tb.grid(row=2,column=0,padx=(20,0),pady=(150,0),columnspan=4)
+tb.heading('#0',text ='ID')
+tb.heading('name',text ='Name')
+tb.heading('date',text ='Date')
+tb.heading('time',text ='Time')
+
+# scroll bar
+scroll=ttk.Scrollbar(attFrame,orient='vertical',command=tb.yview)
+scroll.grid(row=2,column=4,padx=(20,100),pady=(150,0),sticky='ns')
+tb.configure(yscrollcommand=scroll.set)
+
+window.protocol("WM_DELETE_WINDOW", on_closing)
 window.mainloop()
 

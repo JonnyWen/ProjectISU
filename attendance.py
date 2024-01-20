@@ -2,7 +2,7 @@ import face_recognition
 import cv2
 import sys
 import numpy as np
-from db import getAllStudents, Attendance, insertAttendance
+from db import getAllStudents, Attendance, insertAttendance, queryAllAttendance
 from datetime import datetime
 
 class AttendanceMgr:
@@ -100,3 +100,6 @@ class AttendanceMgr:
         dString = datetime.now().strftime('%d/%m/%Y')
         attendance = Attendance(student_num=id, name=name, date=dString, time=tString)
         insertAttendance(attendance)
+
+def getAllAttendance():
+    return queryAllAttendance()

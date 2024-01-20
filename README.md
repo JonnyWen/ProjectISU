@@ -12,8 +12,8 @@ git push
 
 ## To dos:
 ### 1.Enhance face recognition functionality to write to database DONE
-### 2.Create attendance table in GUI
-### 3.Show attendance and show absence functionality
+### 2.Create attendance table in GUI DONE 
+### 3.Show attendance and show absence functionality DONE
 ### 4.Clear attendance button and functionality
 ### 5.Clear registration button and functionality
 ### 6.Testing!
@@ -22,3 +22,4 @@ git push
 ### 9.Update RESEARCH.md sqlchemy and sqlite studio
 ### 10.Update README.md formatting and required contents
 ### 11.Make GUI more colorful and professional
+### 12.Fix Scrollbar 
