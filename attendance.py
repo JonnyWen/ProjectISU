@@ -2,6 +2,7 @@ import face_recognition
 import cv2
 import sys
 import numpy as np
+from db import getAllStudents
 
 class AttendanceMgr:
     face_locations = []
@@ -16,9 +17,10 @@ class AttendanceMgr:
     def __init__(self):
         self.encode_face()
 
+    # Load student data from database and process image files
     def encode_face(self):
-
-        for student in self.registeredStudents:
+        allStudents = getAllStudents()
+        for student in allStudents:
             face_image = face_recognition.load_image_file(f'images/{student.imageName}')
             face_encoding = face_recognition.face_encodings(face_image)[0]
 

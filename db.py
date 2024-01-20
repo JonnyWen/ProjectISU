@@ -43,3 +43,6 @@ def insertStudent(student):
         return
     session.add(student)
     session.commit()
+
+def getAllStudents():
+    return session.query(Student).all()
