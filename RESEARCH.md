@@ -2,7 +2,7 @@
 
 #### Article: Face Detection with Python using OpenCV
 #### Source: https://www.datacamp.com/tutorial/face-detection-python-opencv
-#### Reason: Learned fundamentals of using computer vision and openCV libray.
+#### Reason: Learned fundamentals of using computer vision and OpenCV libray.
 #
 #### Video: Face Recognition With Python 3.10 Tutorial (Webcam)
 #### Source: https://www.youtube.com/watch?v=tl2eEBFEHqM&t=900s
