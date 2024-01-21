@@ -18,13 +18,13 @@ All these functionalities above can be preformed using a graphical user interfac
 
 ## Technology
 
-Python - Programming Language
-Tkinter - GUI framework
-OpenCV - Computer vision libray for image and video processing
-Face Recognition - Facial features detection and recognition libray using machine learning algorithms
-SQLAlchemy ORM - Libray that facilitates the database operations from Python program
-SQLite Database - Lightweight database
-SQLite Studio - A GUI tool to browse and edit SQLite Database table and data
+##### Python - Programming Language
+##### Tkinter - GUI framework
+##### OpenCV - Computer vision libray for image and video processing
+##### Face Recognition - Facial features detection and recognition libray using machine learning algorithms
+##### SQLAlchemy ORM - Libray that facilitates the database operations from Python program
+##### SQLite Database - Lightweight database
+##### SQLite Studio - A GUI tool to browse and edit SQLite Database table and data
 
 ## To dos:
 ### 1.Enhance face recognition functionality to write to database DONE
