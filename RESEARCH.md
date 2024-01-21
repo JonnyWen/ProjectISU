@@ -11,7 +11,14 @@
 #### Article: Python GUI Programming With Tkinter
 #### Source: https://realpython.com/python-gui-tkinter/
 #### Reason: Learning fundamentals of using Tkinter framework to create graphic user interface.
-
+#
+#### Article: SQLAlchemy ORM Tutorial
+#### Source: https://docs.sqlalchemy.org/en/14/orm/tutorial.html
+#### Reason: Learning how to work with database using sqlalchemy object relation mapping tool.
+#
+#### Article: SQLiteStudio Tutorial
+#### Source: http://cswire.blogspot.com/2017/11/sqlitestudio-tutorial-basic-database.html
+#### Reason: Learning how to use SQLiteStudio to check tables and records in database.
 
 
 

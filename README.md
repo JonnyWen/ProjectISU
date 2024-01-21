@@ -23,4 +23,4 @@ git push
 ### 10.Update README.md formatting and required contents
 ### 11.Make GUI more colorful and professional
 ### 12.Fix Scrollbar 
-### 13.Fix Clear button for register
+### 13.Fix Clear button for register DONE
