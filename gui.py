@@ -105,7 +105,7 @@ clearButton = tkinter.Button(regFrame, text="Clear", command=clear, fg="black", 
 clearButton.place(x=45, y=230, relwidth=0.29)
 
 # Take Picture buttons
-takePicButton = tkinter.Button(regFrame, text="Take Pictures", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
+takePicButton = tkinter.Button(regFrame, text="Register", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
 takePicButton.place(x=30, y=350, relwidth=0.50)
 
 # Clear Registration buttons
@@ -152,15 +152,15 @@ attendanceTitle.place(x=140, y=115)
 
 # attendance table
 style = ttk.Style()
-style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Inter', 11)) # Modify the font of the body
+style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Inter', 15)) # Modify the font of the body
 style.configure("mystyle.Treeview.Heading",font=('Inter', 13,'bold')) # Modify the font of the headings
 style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})]) # Remove the borders
-tb = ttk.Treeview(attFrame, height =13,columns = ('name','date','time'),style="mystyle.Treeview")
+tb = ttk.Treeview(attFrame, height =15,columns = ('name','date','time'),style="mystyle.Treeview")
 tb.column('#0',width=82)
 tb.column('name',width=130)
 tb.column('date',width=133)
 tb.column('time',width=133)
-tb.grid(row=2,column=0,padx=(20,0),pady=(150,0),columnspan=4)
+tb.grid(row=2,column=0,padx=(15,0),pady=(150,0),columnspan=4)
 tb.heading('#0',text ='ID')
 tb.heading('name',text ='Name')
 tb.heading('date',text ='Date')
@@ -168,7 +168,7 @@ tb.heading('time',text ='Time')
 
 # scroll bar
 scroll=ttk.Scrollbar(attFrame,orient='vertical',command=tb.yview)
-scroll.grid(row=2,column=4,padx=(20,100),pady=(150,0),sticky='ns')
+scroll.grid(row=2,column=4,padx=(0,100),pady=(150,0),sticky='ns')
 tb.configure(yscrollcommand=scroll.set)
 
 window.protocol("WM_DELETE_WINDOW", on_closing)
