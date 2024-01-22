@@ -1,8 +1,3 @@
-A sentence on the purpose of the project
-Goal: What do you want to have finished by the middle of June?
-Technology used: What are you using to make the project?
-Example: A web app will take HTML/CSS/JavaScript with Flask on Python
-
 # FaceAttendance
 
 A smart students attendance checking application using facial recognition technology.
@@ -25,19 +20,3 @@ All these functionalities above can be preformed using a graphical user interfac
 ##### SQLAlchemy ORM - Libray that facilitates the database operations from Python program
 ##### SQLite Database - Lightweight database
 ##### SQLite Studio - A GUI tool to browse and edit SQLite Database table and data
-
-## To dos:
-### 1.Enhance face recognition functionality to write to database DONE
-### 2.Create attendance table in GUI DONE 
-### 3.Show attendance and show absence functionality DONE
-### 4.Clear attendance button and functionality DONE
-### 5.Clear registration button and functionality DONE
-### 6.Testing!
-### 7.Bug fixing! 
-### 8.GUI enhancement (colors, size, logos) DONE
-### 9.Update RESEARCH.md sqlchemy and sqlite studio DONE
-### 10.Update README.md formatting and required contents DONE
-### 11.Make GUI more colorful and professional DONE
-### 12.Fix Scrollbar DONE
-### 13.Fix Clear button for register DONE
-### 14.Clean up unused code and comments!

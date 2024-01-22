@@ -3,11 +3,7 @@ from tkinter import *
 from tkinter import messagebox as mess
 from tkinter import ttk
 from PIL import ImageTk, Image
-import cv2
-import face_recognition
 import os
-import sys
-import numpy as np
 from attendance import AttendanceMgr, getAllAttendance, getAllStudents, removeAttendance
 from registration import register, removeRegisteredStudent
 
