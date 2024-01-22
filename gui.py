@@ -63,6 +63,9 @@ def on_closing():
     if mess.askyesno("Quit", "You are exiting window.Do you want to quit?"):
         window.destroy()
 
+#contact
+def contact():
+    mess._show(title="Contact Me",message="If you need any help with this application contact me at 349358598@gapps.yrdsb.ca")
 
 # Display application window
 window = tkinter.Tk()
@@ -170,6 +173,17 @@ tb.heading('time',text ='Time')
 scroll=ttk.Scrollbar(attFrame,orient='vertical',command=tb.yview)
 scroll.grid(row=2,column=4,padx=(0,100),pady=(150,0),sticky='ns')
 tb.configure(yscrollcommand=scroll.set)
+
+#Menubar
+menubar=Menu(window)
+help=Menu(menubar,tearoff=0)
+help.add_command(label="Contact Us",command=contact)
+help.add_separator()
+help.add_command(label="Exit",command=on_closing)
+menubar.add_cascade(label="Help",menu=help)
+
+#Show Menubar on window
+window.config(menu=menubar)
 
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.mainloop()

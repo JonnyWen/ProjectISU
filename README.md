@@ -38,5 +38,5 @@ All these functionalities above can be preformed using a graphical user interfac
 ### 9.Update RESEARCH.md sqlchemy and sqlite studio DONE
 ### 10.Update README.md formatting and required contents DONE
 ### 11.Make GUI more colorful and professional
-### 12.Fix Scrollbar 
+### 12.Fix Scrollbar DONE
 ### 13.Fix Clear button for register DONE
