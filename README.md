@@ -33,10 +33,11 @@ All these functionalities above can be preformed using a graphical user interfac
 ### 4.Clear attendance button and functionality DONE
 ### 5.Clear registration button and functionality DONE
 ### 6.Testing!
-### 7.Bug fixing!
-### 8.GUI enhancement (colors, size, logos)
+### 7.Bug fixing! 
+### 8.GUI enhancement (colors, size, logos) DONE
 ### 9.Update RESEARCH.md sqlchemy and sqlite studio DONE
 ### 10.Update README.md formatting and required contents DONE
-### 11.Make GUI more colorful and professional
+### 11.Make GUI more colorful and professional DONE
 ### 12.Fix Scrollbar DONE
 ### 13.Fix Clear button for register DONE
+### 14.Clean up unused code and comments!

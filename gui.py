@@ -2,6 +2,7 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox as mess
 from tkinter import ttk
+from PIL import ImageTk, Image
 import cv2
 import face_recognition
 import os
@@ -67,6 +68,10 @@ def on_closing():
 def contact():
     mess._show(title="Contact Me",message="If you need any help with this application contact me at 349358598@gapps.yrdsb.ca")
 
+#about this project
+def about():
+    mess._show(title="About",message="This is a student attendance system using facial recognition technology, developed by Jonathan Wen for the GW Williams ICS4U ISU Project.")
+
 # Display application window
 window = tkinter.Tk()
 window.title(" Student Attendance System")
@@ -107,6 +112,19 @@ inputStudentName.place(x=45, y=173,relwidth=0.75)
 clearButton = tkinter.Button(regFrame, text="Clear", command=clear, fg="black", bg="green", width=11, activebackground = "green", font=('Inter', 12, ' bold '))
 clearButton.place(x=45, y=230, relwidth=0.29)
 
+# Read the Image
+image = Image.open("logo/GW logo.png")
+
+# Resize the logo
+resize_img = image.resize((125, 125))
+
+# logo image
+img = ImageTk.PhotoImage(resize_img)
+
+# Label of logo
+lbLogo = tkinter.Label(regFrame, image=img, fg="black", bg="#ADD8E6" )
+lbLogo.place(x=325, y=325, relwidth=0.3)
+
 # Take Picture buttons
 takePicButton = tkinter.Button(regFrame, text="Register", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
 takePicButton.place(x=30, y=350, relwidth=0.50)
@@ -115,7 +133,7 @@ takePicButton.place(x=30, y=350, relwidth=0.50)
 clearRegistrationButton = tkinter.Button(regFrame, text="Clear all registration", command=clearRegistration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
 clearRegistrationButton.place(x=30, y=400, relwidth=0.50)
 
-### End of registratipon frame
+### End of registration frame
 
 # Attendance panel
 attFrame = tkinter.Frame(window, bg="#ADD8E6")
@@ -179,11 +197,18 @@ menubar=Menu(window)
 help=Menu(menubar,tearoff=0)
 help.add_command(label="Contact Us",command=contact)
 help.add_separator()
+help.add_command(label="About",command=about)
+help.add_separator()
 help.add_command(label="Exit",command=on_closing)
+help.add_separator()
 menubar.add_cascade(label="Help",menu=help)
 
 #Show Menubar on window
 window.config(menu=menubar)
+
+# copyright label
+lbStudentName = tkinter.Label(window, text="Powered by Python, Tkinter, OpenCV and SQLite", width=50,fg="grey",bg="#051650",font=('Inter', 12, ' bold '))
+lbStudentName.place(x=400, y=680)
 
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.mainloop()
