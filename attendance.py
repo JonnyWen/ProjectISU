@@ -12,7 +12,6 @@ class AttendanceMgr:
     known_face_encodings = []
     known_face_names = []
     known_face_ids = []
-    registeredStudents = []
     process_current_frame = True
 
     def __init__(self):
@@ -20,8 +19,7 @@ class AttendanceMgr:
 
     # Load student data from database and process image files
     def encode_face(self):
-        allStudents = getAllStudents()
-        for student in allStudents:
+        for student in getAllStudents():
             face_image = face_recognition.load_image_file(f'images/{student.imageName}')
             face_encoding = face_recognition.face_encodings(face_image)[0]
 
@@ -29,26 +27,26 @@ class AttendanceMgr:
             self.known_face_names.append(student.name)
             self.known_face_ids.append(student.student_num)
 
-        print(self.known_face_names)
-        print(self.known_face_ids)
-
     def takeAttendance(self):
+        # Capture video images
         video_capture = cv2.VideoCapture(0)
 
         if not video_capture.isOpened():
             sys.exit('Could not open video stream or file')
 
         while True:
+            # Capturing frame
             ret, frame = video_capture.read()
 
             if self.process_current_frame:
+                # reduce the size of frame to make the processing faster
                 small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-                # rgb_small_frame = small_frame[:, :, ::-1]
+                # Converts frame to RGB colors
                 rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
 
-                #find all faces in the current frame
+                # find all faces in the current frame
                 self.face_locations = face_recognition.face_locations(rgb_small_frame)
-                # Encodes all face
+                # Encodes all faces
                 self.face_encodings = face_recognition.face_encodings(rgb_small_frame, self.face_locations)
 
                 self.face_names = []
@@ -59,7 +57,7 @@ class AttendanceMgr:
                     # Calculates distance of know faces from current face encoding on camera
                     face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)
 
-                    # Find the best match using smallest distance
+                    # Find the best match using the closest distance
                     if len(face_distances) > 0:
                         best_match_index = np.argmin(face_distances)
 
@@ -68,6 +66,7 @@ class AttendanceMgr:
                         name = self.known_face_names[best_match_index]
                         id = self.known_face_ids[best_match_index]
 
+                        # Save the student to attendance if the face is recognized successfully
                         if name != 'Unknown':
                             self.markAttendance(id, name)
 
@@ -75,7 +74,7 @@ class AttendanceMgr:
 
             self.process_current_frame = not self.process_current_frame
 
-            # Display recognized name
+            # Display names around the faces
             for (top, right, bottom, left), name in zip(self.face_locations, self.face_names):
                 top *= 4
                 right *= 4

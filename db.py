@@ -3,14 +3,14 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String
 
-# Initialize sqlite database engine
+# Initialize sqlite database engine and connect to a database file
 engine = create_engine(
     "sqlite:///attendance.db"
 )
 
 Base = declarative_base()
 
-# Class for student table
+# Class mapped to table, attributes map to colum
 class Student(Base):
     __tablename__ = 'student'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -18,7 +18,6 @@ class Student(Base):
     name = Column(String(255))
     imageName = Column(String(255))
 
-# Class for attendance table
 class Attendance(Base):
     __tablename__ = 'attendance'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -27,7 +26,7 @@ class Attendance(Base):
     date = Column(String(255))
     time = Column(String(255))
 
-# Create tables
+# Only run once to create tables
 # Base.metadata.tables['student'].create(engine)
 # Base.metadata.tables['attendance'].create(engine)
 
@@ -35,12 +34,13 @@ class Attendance(Base):
 Session = sessionmaker(bind=engine)
 session = Session()
 def insertStudent(student):
-
+    # query database by filtering on the attribute
     qry_object = session.query(Student).filter(Student.student_num == student.student_num).all()
 
     if qry_object:
         print('student already registered')
         return
+    # insert the record
     session.add(student)
     session.commit()
 

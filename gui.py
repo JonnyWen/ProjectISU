@@ -24,31 +24,28 @@ def takeAttendance():
     att.takeAttendance()
 
 def showAttendance():
-    print('show attendance')
     # clear table first
-    for k in tb.get_children():
-        tb.delete(k)
+    for k in attendanceTb.get_children():
+        attendanceTb.delete(k)
     # Display each row
     for att in getAllAttendance():
-        tb.insert('', 'end', text=att.student_num, values=(att.name, att.date, att.time))
+        attendanceTb.insert('', 'end', text=att.student_num, values=(att.name, att.date, att.time))
 
 def showAbsence():
-    print('Show absence')
     # collect id of all attendees
     attendee_ids = [att.student_num for att in getAllAttendance()]
-    print(attendee_ids)
-    for k in tb.get_children():
-        tb.delete(k)
+    # Clear the attendance table in GUI
+    for k in attendanceTb.get_children():
+        attendanceTb.delete(k)
+    # check all the registered students if they are not in attendance show them in the absence table
     for student in getAllStudents():
         if student.student_num not in attendee_ids:
-            tb.insert('', 'end', text=student.student_num, values=(student.name, 'absense', 'absense'))
+            attendanceTb.insert('', 'end', text=student.student_num, values=(student.name, 'absense', 'absense'))
 
 def clearAttendance():
-    print('clear attendance')
     removeAttendance()
 
 def clearRegistration():
-    print('Clear Registration')
     # Remove all image files
     for root, dirs, files in os.walk('images'):
         for file in files:
@@ -121,9 +118,9 @@ img = ImageTk.PhotoImage(resize_img)
 lbLogo = tkinter.Label(regFrame, image=img, fg="black", bg="#ADD8E6" )
 lbLogo.place(x=325, y=325, relwidth=0.3)
 
-# Take Picture buttons
-takePicButton = tkinter.Button(regFrame, text="Register", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
-takePicButton.place(x=30, y=350, relwidth=0.50)
+# Take Picture/register buttons
+registerButton = tkinter.Button(regFrame, text="Register", command=registration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
+registerButton.place(x=30, y=350, relwidth=0.50)
 
 # Clear Registration buttons
 clearRegistrationButton = tkinter.Button(regFrame, text="Clear all registration", command=clearRegistration, fg="black", bg="#051650", width=34, height=1, activebackground="grey", font=('Inter', 16, ' bold '))
@@ -143,9 +140,9 @@ attFrameHeader.place(x=0, y=0, relwidth=1)
 takeAttendanceButton = tkinter.Button(attFrame, text="Take Attendance", command=takeAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
 takeAttendanceButton.place(x=30,y=60,relwidth=0.40)
 
-# Taking attendance button
-takeAttendanceButton = tkinter.Button(attFrame, text="Clear Attendance", command=clearAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
-takeAttendanceButton.place(x=280,y=60,relwidth=0.40)
+# Clear attendance button
+clearAttendanceButton = tkinter.Button(attFrame, text="Clear Attendance", command=clearAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
+clearAttendanceButton.place(x=280,y=60,relwidth=0.40)
 
 # Showing attendance button
 showAttendanceButton = tkinter.Button(attFrame, text="Show Attendance", command=showAttendance, fg="black", bg="#00aeff", height=1, activebackground = "white" ,font=('Inter', 16, ' bold '))
@@ -172,21 +169,21 @@ style = ttk.Style()
 style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Inter', 15)) # Modify the font of the body
 style.configure("mystyle.Treeview.Heading",font=('Inter', 13,'bold')) # Modify the font of the headings
 style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})]) # Remove the borders
-tb = ttk.Treeview(attFrame, height =15,columns = ('name','date','time'),style="mystyle.Treeview")
-tb.column('#0',width=82)
-tb.column('name',width=130)
-tb.column('date',width=133)
-tb.column('time',width=133)
-tb.grid(row=2,column=0,padx=(15,0),pady=(150,0),columnspan=4)
-tb.heading('#0',text ='ID')
-tb.heading('name',text ='Name')
-tb.heading('date',text ='Date')
-tb.heading('time',text ='Time')
+attendanceTb = ttk.Treeview(attFrame, height =15, columns = ('name', 'date', 'time'), style="mystyle.Treeview")
+attendanceTb.column('#0', width=82)
+attendanceTb.column('name', width=130)
+attendanceTb.column('date', width=133)
+attendanceTb.column('time', width=133)
+attendanceTb.grid(row=2, column=0, padx=(15, 0), pady=(150, 0), columnspan=4)
+attendanceTb.heading('#0', text ='ID')
+attendanceTb.heading('name', text ='Name')
+attendanceTb.heading('date', text ='Date')
+attendanceTb.heading('time', text ='Time')
 
 # scroll bar
-scroll=ttk.Scrollbar(attFrame,orient='vertical',command=tb.yview)
+scroll=ttk.Scrollbar(attFrame, orient='vertical', command=attendanceTb.yview)
 scroll.grid(row=2,column=4,padx=(0,100),pady=(150,0),sticky='ns')
-tb.configure(yscrollcommand=scroll.set)
+attendanceTb.configure(yscrollcommand=scroll.set)
 
 #Menubar
 menubar=Menu(window)
