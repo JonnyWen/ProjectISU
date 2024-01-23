@@ -19,6 +19,12 @@
 #### Article: SQLiteStudio Tutorial
 #### Source: http://cswire.blogspot.com/2017/11/sqlitestudio-tutorial-basic-database.html
 #### Reason: Learning how to use SQLiteStudio to check tables and records in database.
-
-
+#
+#### Article: Face Recognition Based Attendance System with GUI Using Opencv and Tkinter
+#### Source: https://meetsuvariya.medium.com/face-recognition-based-attendance-system-with-gui-using-opencv-and-tkinter-2d5ce7422aa5
+#### Reason: Inspiration for UI using Tkinter
+#
+#### Video: How to make Smart Attendance Using Face Recognition and GUI full tutorial | Face recognition.
+#### Source: https://www.youtube.com/watch?v=L4IvZokt7Hg
+#### Reason: Learned how to work with Tkinter with visual tutorial
 
